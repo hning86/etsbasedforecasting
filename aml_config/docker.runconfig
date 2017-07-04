@@ -7,4 +7,5 @@
   "ManagedEnvironment":true,
   "TrackedRun":true,
   "Target":"docker"
+  "PrepareEnvironment":true
 }
