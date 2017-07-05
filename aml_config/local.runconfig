@@ -6,5 +6,6 @@
   "CondaFile":null,
   "ManagedEnvironment":true,
   "TrackedRun":true,
-  "Target":"local"
+  "Target":"local",
+  "PrepareEnvironment":true
 }
