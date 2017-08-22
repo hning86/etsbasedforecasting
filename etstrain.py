@@ -6,7 +6,7 @@ import sys
 import os
 from datetime import timedelta
 from array import array
-from azureml_sdk import data_collector
+from azureml.sdk import data_collector
 try:
     import matplotlib.pylab as plt
 except ImportError:
