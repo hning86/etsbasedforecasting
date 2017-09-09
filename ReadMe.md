@@ -57,5 +57,8 @@ $ az ml service create realtime -f score.py -m model.pkl  -n arimaforecast -r py
 
 Once the web service is published, user can consume this web service using the following command
 ```
-$ az ml service run realtime -n arimaforecast -d '{"input":[{"start":"127"},{"stop":"151"}]}'
+# for local
+az ml service run realtime -i arimaforecast -d "[{\"start\":\"127\"},{\"stop\":\"151\"}]"
+# for cluster 
+$ az ml service run realtime -i arimaforecast.amlcluster-41011325.eastus2 -d "[{\"start\":\"127\"},{\"stop\":\"151\"}]"
 ```
