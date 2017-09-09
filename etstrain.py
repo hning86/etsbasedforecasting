@@ -6,7 +6,7 @@ import sys
 import os
 from datetime import timedelta
 from array import array
-from azureml.sdk import data_collector
+from azureml.logging import get_azureml_logger
 try:
     import matplotlib.pylab as plt
 except ImportError:
@@ -90,7 +90,7 @@ def rmse(predictions, targets):
 
 #print("Pandas Version:"+pd.__version__)
 # initialize the logger
-run_logger = data_collector.current_run() 
+run_logger = get_azureml_logger() 
 
 # create the outputs folder
 os.makedirs('./outputs', exist_ok=True)
