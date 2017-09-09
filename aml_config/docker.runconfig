@@ -5,7 +5,7 @@ ArgumentVector:
   - "$file"
 
 # The name of the compute target to use for this run.
-Target: "docker-python"
+Target: "docker"
 
 # Environment variables set for the run.
 EnvironmentVariables:
