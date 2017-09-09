@@ -8,6 +8,7 @@ from datetime import timedelta
 from array import array
 
 def init():
+    global fldr
     try:
         from statsmodels.tsa.stattools import acf, pacf
         from statsmodels.tsa.arima_model import ARIMA
@@ -18,9 +19,9 @@ def init():
         from statsmodels.tsa.stattools import acf, pacf
         from statsmodels.tsa.arima_model import ARIMA
     # serialize the model on disk in the special 'outputs' folder
-    print ("Read the model from model.pkl")
-    fldr = os.environ['AZUREML_NATIVE_SHARE_DIRECTORY'] + "outputs/"
-    fl = open(fldr + "model.pkl", 'rb')
+    print ("Read the model from model.pkl in directory ", fldr)
+    
+    fl = open(fldr+"model.pkl", 'rb')
     global ar_res
     ar_res = pickle.load( fl)
     fl.close()
@@ -54,21 +55,28 @@ def run(inputString):
         input_list=json.loads(inputString)
     except ValueError:
         return 'Bad input: expecting a json encoded list of lists.'
-    strt = int(input_list["input"][0]["start"])
-    stp = int(input_list["input"][1]["stop"])
+    strt = int(input_list[0]["start"])
+    stp = int(input_list[1]["stop"])
     print("start:",strt)
     print("stop:",stp)
         
     pred = predictForecast(strt,stp)
-    return json.dumps(str(pred))
+    return str(pred)
+
+global fldr
+fldr=""
+if __name__ == "__main__":
+    global fldr
+    fldr = os.environ['AZUREML_NATIVE_SHARE_DIRECTORY'] + "outputs/"
+    # predict future values
+    print ('Python version: {}'.format(sys.version))
+    print('Pandas version:',pd.__version__)
+    print ()
+    init()
+    #f = run('{"input":[{"start":"127"},{"stop":"151"}]}')
+    f = run('[{"start":"127"},{"stop":"151"}]')
+
+    print("Forecast Values:")
+    print(f)
 
 
-# predict future values
-print ('Python version: {}'.format(sys.version))
-print('Pandas version:',pd.__version__)
-print ()
-init()
-f = run('{"input":[{"start":"127"},{"stop":"151"}]}')
-
-print("Forecast Values:")
-print(f)
