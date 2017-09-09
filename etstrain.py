@@ -118,8 +118,10 @@ plt.plot(f,color='green',label='Forecast')
 fig.savefig("./outputs/forecast.png")
 
 # serialize the model on disk in the special 'outputs' folder
+fldr = os.environ['AZUREML_NATIVE_SHARE_DIRECTORY'] + "outputs/"
+os.makedirs(fldr, exist_ok=True)
 print ("Export the model to model.pkl")
-fl = open('./outputs/model.pkl', 'wb')
+fl = open(fldr+"model.pkl", 'wb')
 pickle.dump(ar_res, fl)
 fl.close()
 
