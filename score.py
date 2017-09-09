@@ -19,7 +19,8 @@ def init():
         from statsmodels.tsa.arima_model import ARIMA
     # serialize the model on disk in the special 'outputs' folder
     print ("Read the model from model.pkl")
-    fl = open('model.pkl', 'rb')
+    fldr = os.environ['AZUREML_NATIVE_SHARE_DIRECTORY'] + "outputs/"
+    fl = open(fldr + "model.pkl", 'rb')
     global ar_res
     ar_res = pickle.load( fl)
     fl.close()
