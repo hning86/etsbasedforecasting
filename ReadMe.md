@@ -47,12 +47,11 @@ If you don't have existing Azure Machine Learning model management environment, 
 
 ```
 $ az ml env setup -n <acct name e.g. neerajteam2hosting> -g <rsrc grp e.g. amlgrp2>
-$ sudo /opt/microsoft/azureml/initial_setup.sh #add your user name to docker in root mode
 ```
 Once environment is primed using above commands, we can start publishing as web service using the following commands
 ```	
 $ az ml env local # target the local environment
-$ az ml service create realtime -f score.py -m model.pkl  -n arimaforecast -r python -c ./aml-config/conda-dependencies.yml -l
+$ az ml service create realtime -f score.py -m model.pkl  -n arimaforecast -r python -c .\aml_config\conda_dependencies.yml -l true
 ```
 ## Consuming model using Web Service
 
