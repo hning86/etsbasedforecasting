@@ -33,15 +33,28 @@ Now you have scoring file, model, and all dependencies to deploy model into prod
 
 Copy scoring.py and model.pkl files to the DSVM using [WinSCP](https://winscp.net/eng/download.php) or other ssh ftp client. 
 
-Now execute the following commands on DSVM to setup the local environment for operationalization
+Now execute the following commands on DSVM to setup the local environment for operationalization assuming you already have Azure subscription and Azure Machine Learning model management account
 ```
-$ az ml env setup # this will setup local environment (not K8 cluster)
+$ az account set -s <Subscription Name e.g. mysubscription>
+$ az ml account modelmanagement set -n <acct name e.g. neerajteam2hosting> -g <rsrc grp e.g. amlgrp2>
+```
+
+If you have already Azure Machine Learning model manamgement environment, then just set the environment as shown below
+
+```
+$ az ml  env set -n <env name e.g. amlcluster> -g <rsrc grp e.g. amlgrp2>
+```
+
+If you don't have existing Azure Machine Learning model management environment, then you can create a new environment using the following command. The command below is shown without **-c option** to setup a local environment for ease of testing. If you need to setup a ACS Kubernetes cluster, then also add **-c option** to the env setup command below. 
+
+```
+$ az ml env setup -n <acct name e.g. neerajteam2hosting> -g <rsrc grp e.g. amlgrp2>
 $ sudo /opt/microsoft/azureml/initial_setup.sh #add your user name to docker in root mode
 ```
 Once environment is primed using above commands, we can start publishing as web service using the following commands
 ```	
 $ az ml env local # target the local environment
-$ az ml service create realtime -f score.py -m model.pkl  -n arimaforecast -r scikit-py -l
+$ az ml service create realtime -f score.py -m model.pkl  -n arimaforecast -r python -c ./aml-config/conda-dependencies.yml -l
 ```
 ## Consuming model using Web Service
 
