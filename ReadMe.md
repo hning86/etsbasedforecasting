@@ -13,7 +13,7 @@ The statsmodels package makes training ARIMA based forecasting model really simp
 
 Run etstrain.py in a local Docker container.
 ```
-$ az ml experiment submit -t docker etstrain.py
+$ az ml experiment submit   -c local etstrain.py
 ```
 
 Download model from the outputs folder by clicking **outputs/model.pkl** 
@@ -24,16 +24,14 @@ Download model from the outputs folder by clicking **outputs/model.pkl**
 
 Run score.py in a local docker container
 ```
-$ az ml experiment submit -t docker  score.py
+$ az ml experiment submit   -c local score.py
 ```
 
 ## Deploy model
 
-Now you have scoring file, model, and all dependencies to deploy model into production as web service. We will use DSVM and ssh client Mobaxterm to deploy model into DSVM. Use [this](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro) link to provision [DSVM](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-linux-dsvm-intro). Use [MobaXterm](http://mobaxterm.mobatek.net/download.html) from [here](http://mobaxterm.mobatek.net/download.html) as ssh client.
+Now you have scoring file, model, and all dependencies to deploy model into production as web service. Open command line interface through File Menu of Azure Machine Learning Workbench App. 
 
-Copy scoring.py and model.pkl files to the DSVM using [WinSCP](https://winscp.net/eng/download.php) or other ssh ftp client. 
-
-Now execute the following commands on DSVM to setup the local environment for operationalization assuming you already have Azure subscription and Azure Machine Learning model management account
+Now execute the following commands on CLI to setup the local environment for operationalization assuming you already have Azure subscription and Azure Machine Learning model management account
 ```
 $ az account set -s <Subscription Name e.g. mysubscription>
 $ az ml account modelmanagement set -n <acct name e.g. neerajteam2hosting> -g <rsrc grp e.g. amlgrp2>
