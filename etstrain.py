@@ -96,7 +96,7 @@ run_logger = get_azureml_logger()
 os.makedirs('./outputs', exist_ok=True)
 
 # read and parse data
-dataset1 = pd.read_csv("Time Series Dataset.csv")
+dataset1 = pd.read_csv("TimeSeriesDataset.csv")
 dataset2 = PrepareTrainData(dataset1)
 
 # initialize plots
