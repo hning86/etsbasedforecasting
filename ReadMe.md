@@ -1,3 +1,11 @@
+
+## Pre-requisites
+Install stats package. Open command line from Azure Machine Learning Workbench and execute the following statement
+
+```
+$ conda install statsmodels
+```
+
 ## Train model
 
 
