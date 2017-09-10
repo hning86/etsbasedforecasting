@@ -1,3 +1,4 @@
+
 # Conda environment specification. The dependencies defined in this file will be
 # automatically provisioned for each run unless environment management is disabled.
 
@@ -6,3 +7,5 @@
 name: project_environment
 dependencies:
   - python=3.5.2
+  - statsmodels
+  - matplotlib
