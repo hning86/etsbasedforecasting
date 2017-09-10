@@ -8,6 +8,8 @@ from datetime import timedelta
 from array import array
 from azureml.logging import get_azureml_logger
 try:
+    import matplotlib
+    matplotlib.use('Agg')
     import matplotlib.pylab as plt
 except ImportError:
     import pip
