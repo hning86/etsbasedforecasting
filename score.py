@@ -66,7 +66,7 @@ def run(inputString):
 global fldr
 fldr=""
 if __name__ == "__main__":
-    global fldr
+    
     fldr = os.environ['AZUREML_NATIVE_SHARE_DIRECTORY'] + "outputs/"
     # predict future values
     print ('Python version: {}'.format(sys.version))
