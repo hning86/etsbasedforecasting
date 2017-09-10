@@ -125,6 +125,11 @@ fl = open(fldr+"model.pkl", 'wb')
 pickle.dump(ar_res, fl)
 fl.close()
 
+print ("Export the model to model.pkl in outputs directory")
+fl = open("./outputs/model.pkl", 'wb')
+pickle.dump(ar_res, fl)
+fl.close()
+
 # calculate rmse and other metrics
 trgt = dataset2['N1725'].as_matrix()
 pred = ar_res.fittedvalues.as_matrix()
