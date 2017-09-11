@@ -7,5 +7,5 @@
 name: project_environment
 dependencies:
   - python=3.5.2
-  - statsmodels
-  - matplotlib
+  - statsmodels=0.8.0
+  - matplotlib=2.0.2
